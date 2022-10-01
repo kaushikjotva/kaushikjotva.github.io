@@ -1,0 +1,50 @@
+<html>  
+    <head>  
+     <title>Form in HTML</title>  
+     <style>
+        #myform .error{
+            color: red;
+        }
+     </style>
+   </head>  
+    <body>  
+        <h2>Registration form</h2>  
+       <form id="myform">  
+        <fieldset>  
+           <legend>User personal information</legend>  
+           <label>Enter your full name</label><br>  
+           <input type="text" name="name" required><br>  
+            <label>Enter your email</label><br>  
+            <input type="email" name="email" required><br>  
+            <label>Enter your password</label><br>  
+            <input type="password" name="pass" id="pass" required><br>  
+            <label>confirm your password</label><br>  
+            <input type="password" name="cpass" required><br>  
+            <br><label>Enter your gender</label><br>  
+            <input type="radio" id="gender" name="gender" value="male" required/>Male  <br>  
+            <input type="radio" id="gender" name="gender" value="female"/>Female <br/>    
+            <input type="radio" id="gender" name="gender" value="others"/>others <br/>   
+             <br>Enter your Address:<br>  
+            <textarea required></textarea><br>  
+            <input type="submit" value="sign-up">  
+        </fieldset>  
+     </form>  
+    </body>  
+</html>  
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script>
+    $("#myform").validate({
+        rules:{
+            pass:{
+                minlength:5
+            },
+            cpass:{
+                equalTo: 'pass'
+            }
+        },
+        messages:{
+            name : "Please 3nter your name"
+        }
+    });
+ </script>

@@ -1,0 +1,265 @@
+<!-- <p>First Name : <input data-bind="value:fname,valueUpdate:'keyup'"></p>
+<p>Last Name : <input data-bind="value:lname"></p>
+<h2>Hello , <span data-bind="text:fullname"></span>!</h2> -->
+<!-- 
+
+<p>Friends(<span data-bind="text:friends().length"></span>)</p>
+ <p>FriendsList(<span data-bind="text:friends().value">)</p>
+
+
+<ul data-bind="foreach:friends">
+    <li> <span data-bind="text:name"></span>
+        <input type="checkbox" data-bind="checked:Knowjs" />
+        <input data-bind="value:fevlib,visible:Knowjs">
+        <button data-bind="click:removeFriend">X</button>
+    </li>
+</ul>
+<button data-bind="click:addFriend,enable:friends().length<10">Add Friends</button> -->
+<!-- =========================================================================================== -->
+
+<!-- CSS only -->
+
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+
+    <div class="col">
+        <div class="row flex-lg-nowrap">
+            <div class="col mb-3">
+                <div class="e-panel card mt-4">
+                    <div class="card-body">
+                        <div class="card-title d-flex justify-content-between">
+                            <h3 class="mr-2"><span>Employee Management</span></h3>
+                            <div class="px-xl-3 text-right">
+                                <button class="btn btn-success btn-block" type="button" data-bs-toggle="modal" data-bs-target="#user-form-modal" data-bind="click:clearfieldadd()">New User</button>
+                            </div>
+                        </div>
+                        <div class="e-table">
+                            <div class="table-responsive table-lg mt-3">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="max-width">First Name</th>
+                                            <th class="max-width">Last Name</th>
+                                            <th class="max-width">Address</th>
+                                            <th class="max-width">Gender</th>
+                                            <th class="max-width">City</th>
+                                            <th class="sortable">Date</th>
+                                            <th class="max-width">Email</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbody" data-bind="foreach:employees">
+                                        <tr>
+                                            <td class="max-width" data-bind="text:valfname"></td>
+                                            <td class="max-width" data-bind="text:vallname"></td>
+                                            <td class="max-width" data-bind="text:valtxtaddress"></td>
+                                            <td class="max-width" data-bind="text:valgender"></td>
+                                            <td class="max-width" data-bind="text:valcity"></td>
+                                            <td class="max-width" data-bind="text:valdate"></td>
+                                            <td class="max-width" data-bind="text:valemail"></td>
+                                            <td>
+                                                <div class="btn-group align-top">
+                                                    <button class="btn btn-sm btn-outline-secondary badge text-dark" type="button" data-bs-toggle="modal" data-bs-target="#user-form-update-modal" data-bind="click:$root.getemp">Edit</button>
+                                                    <button class="btn btn-sm btn-outline-secondary badge text-danger" data-bind="click:$root.deleteemp" type="button"><i class="fa fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Add Form Modal -->
+
+            <div class="modal fade" role="dialog" tabindex="-1" id="user-form-modal">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Employee</h5>
+                            <button type="button" class="close btn btn-outline-danger" data-bs-dismiss="modal">
+                            <span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row">
+                                    <span id="validation" data-bind="text:errormsg" style="color: red;"></span>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input type="text" id="fname" data-bind="value:fname" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example1m">First name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input type="text" id="lname" data-bind="value:lname" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example1n">Last name</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <textarea class="form-control form-control-lg" data-bind="value:txtaddress" id="txtaddress"></textarea>
+                                    <label class="form-label" for="form3Example8">Address</label>
+                                </div>
+
+                                <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+
+                                    <h6 class="mb-0 me-4">Gender: </h6>
+
+                                    <div class="form-check form-check-inline mb-0 me-4">
+                                        <input class="form-check-input" type="radio" name="RadioOptions" data-bind="checked: gender" id="maleGender" value="Male" />
+                                        <label class="form-check-label" for="maleGender">Male</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline mb-0 me-4">
+                                        <input class="form-check-input" type="radio" name="RadioOptions" data-bind="checked: gender" id="femaleGender" value="Female" />
+                                        <label class="form-check-label" for="femaleGender">Female</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline mb-0 me-4">
+                                        <input class="form-check-input" type="radio" name="RadioOptions" data-bind="checked: gender" id="otherGender" value="Other" />
+                                        <label class="form-check-label" for="otherGender">Other</label>
+                                    </div>
+                                    <div class="col">
+                                        <select class="select dropdown w-100" id="city" data-bind="value: city">
+                                                    <option>Select City</option>
+                                                    <option value="Ahmedabad">Ahmedabad</option>
+                                                    <option value="Rajkot">Rajkot</option>
+                                                    <option value="Junagadh">Junagadh</option>
+                                                    <option value="Somanath">Somanath</option>
+                                                    <option value="Talala">Talala</option>
+                                                    <option value="Porabanad">Porabanad</option>
+                                                  </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="date" id="date" data-bind="value:date" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example9">DOB</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="email" id="email" data-bind="value:email" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example97">Email ID</label>
+                                </div>
+
+                                <p><input id="check" type="checkbox" data-bind="checked: agreeFlag" />&nbsp;&nbsp;<label for="check">I agree to save form.</label></p>
+
+                                <div class="d-flex justify-content-end pt-3">
+                                    <button type="submit" id="btnsave" data-bind="click:addemployee,enable: agreeFlag" class="btn btn-warning btn-lg ms-2">Save</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Form Update Modal -->
+
+            <div class="modal fade" role="dialog" tabindex="-1" id="user-form-update-modal">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Update Employee</h5>
+                            <button type="button" class="close btn btn-outline-danger" data-bs-dismiss="modal">
+                <span aria-hidden="true">×</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <input type="hidden" data-bind="value:id" id="id">
+                                <div class="row">
+                                    <span data-bind="text:up_errormsg" style="color: red;">*</span>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input type="text" data-bind="value:up_fname" id="upfname" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example1m">First name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input type="text" data-bind="value:up_lname" id="uplname" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example1n">Last name</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <textarea class="form-control form-control-lg" data-bind="value:up_txtaddress" id="uptxtaddress"></textarea>
+                                    <label class="form-label" for="form3Example8">Address</label>
+                                </div>
+
+                                <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+
+                                    <h6 class="mb-0 me-4">Gender: </h6>
+
+                                    <div class="form-check form-check-inline mb-0 me-4">
+                                        <input class="form-check-input" type="radio" name="RadioOptions" data-bind="checked:up_gender" id="upmaleGender" value="Male" />
+                                        <label class="form-check-label" for="upmaleGender">Male</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline mb-0 me-4">
+                                        <input class="form-check-input" type="radio" name="RadioOptions" data-bind="checked:up_gender" id="upfemaleGender" value="Female" />
+                                        <label class="form-check-label" for="upfemaleGender">Female</label>
+                                    </div>
+
+                                    <div class="form-check form-check-inline mb-0 me-4">
+                                        <input class="form-check-input" type="radio" name="RadioOptions" data-bind="checked:up_gender" id="upotherGender" value="Other" />
+                                        <label class="form-check-label" for="upotherGender">Other</label>
+                                    </div>
+                                    <div class="col">
+                                        <select class="select dropdown w-100" data-bind="value:up_city" id="upcity">
+                                        <option>Select City</option>
+                                        <option value="Ahmedabad">Ahmedabad</option>
+                                        <option value="Rajkot">Rajkot</option>
+                                        <option value="Junagadh">Junagadh</option>
+                                        <option value="Somanath">Somanath</option>
+                                        <option value="Talala">Talala</option>
+                                        <option value="Porabanad">Porabanad</option>
+                                      </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="date" data-bind="value:up_date" id="update" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example9">DOB</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="email" data-bind="value:up_email" id="upemail" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example97">Email ID</label>
+                                </div>
+
+                                <p><input id="check" type="checkbox" data-bind="checked: agreeFlag" />&nbsp;&nbsp;<label for="check">I agree to save form.</label></p>
+
+                                <div class="d-flex justify-content-end pt-3">
+                                    <button type="button" id="btnupdate" data-bind="click:updateemployee,enable:agreeFlag" class="btn btn-warning btn-lg ms-2">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =========================================================================================== -->
+<!-- JavaScript Bundle with Popper -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<script type='text/javascript' src='knockout-min.js'></script>
+
+<script type='text/javascript' src="MyScript.js"></script>

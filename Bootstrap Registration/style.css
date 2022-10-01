@@ -1,0 +1,51 @@
+.maincontainer {
+    background-color: rgb(228, 239, 235);
+}
+
+.container {
+    border-radius: 10px;
+}
+
+.borderfa {
+    border-bottom: 2px solid green;
+    border-top: 1px solid rgb(225, 232, 228);
+}
+
+span {
+    color: red;
+}
+
+.pcolor {
+    color: rgb(170, 170, 170);
+}
+
+.s1 {
+    font-weight: bold;
+}
+
+
+/* remove */
+
+input[type=date]::-webkit-datetime-edit-text,
+
+/* Remove Month */
+
+input[type=date]::-webkit-datetime-edit-month-field,
+
+/* Remove Date */
+
+input[type=date]::-webkit-datetime-edit-day-field,
+
+/* Remove Year */
+
+input[type=date]::-webkit-datetime-edit-year-field {
+    -webkit-appearance: none;
+    display: none;
+}
+
+
+/* @media only screen and (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+} */
