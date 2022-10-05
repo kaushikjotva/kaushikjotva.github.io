@@ -6,6 +6,9 @@
             color: red;
         }
      </style>
+     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>     
+     <script src="http://ajax.microsoft.com/ajax/jquery.validate/1.7/additional-methods.js"></script>
    </head>  
     <body>  
         <h2>Registration form</h2>  
@@ -13,17 +16,17 @@
         <fieldset>  
            <legend>User personal information</legend>  
            <label>Enter your full name</label><br>  
-           <input type="text" name="name" required><br>  
+           <input type="text" id="uname" name="uname" required><br>  
             <label>Enter your email</label><br>  
             <input type="email" name="email" required><br>  
             <label>Enter your password</label><br>  
             <input type="password" name="pass" id="pass" required><br>  
             <label>confirm your password</label><br>  
-            <input type="password" name="cpass" required><br>  
-            <br><label>Enter your gender</label><br>  
-            <input type="radio" id="gender" name="gender" value="male" required/>Male  <br>  
-            <input type="radio" id="gender" name="gender" value="female"/>Female <br/>    
-            <input type="radio" id="gender" name="gender" value="others"/>others <br/>   
+            <input type="password" name="cpass" id="cpass" required><br>  
+            <br><label>Enter your gender</label><br>    
+            <input type="radio" id="genderm" name="gender" value="male" required/>Male  <br>  
+            <input type="radio" id="genderf" name="gender" value="female"/>Female <br/>    
+            <input type="radio" id="gendero" name="gender" value="others"/>others <br/>   
              <br>Enter your Address:<br>  
             <textarea required></textarea><br>  
             <input type="submit" value="sign-up">  
@@ -31,20 +34,30 @@
      </form>  
     </body>  
 </html>  
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 <script>
-    $("#myform").validate({
+    $(document).ready(function(){
+        $.validator.addMethod("pwcheck", function(value) {
+            debugger
+        return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
+            && /[a-z]/.test(value) // has a lowercase letter
+            && /\d/.test(value)// has a digit
+        });
+
+        $("#myform").validate({
         rules:{
             pass:{
-                minlength: 8
+                minlength: 8,
+                pwcheck: true,
             },
             cpass:{
-                equalTo: '#pass'
-            }
+                equalTo: "#pass"
+            },
+            uname: { lettersonly: true }
         },
         messages:{
-            name : "Please enter your name"
-        }
+                uname:{required: "Enter your name"},
+                pass: "Enter Strong Password",
+            },
+        });
     });
  </script>
